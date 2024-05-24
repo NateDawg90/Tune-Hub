@@ -12,7 +12,6 @@
     "@lucia-auth/adapter-mongodb": "^1.0.3",
     "axios": "^1.7.2",
     "lucia": "^3.2.0",
-    "lucia-auth": "^1.8.0",
     "mongodb": "^6.6.2",
     "next": "14.2.3",
     "react": "^18",
