@@ -135,11 +135,6 @@
   dependencies:
     sparse-bitfield "^3.0.3"
 
-"@next-auth/mongodb-adapter@^1.1.3":
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/@next-auth/mongodb-adapter/-/mongodb-adapter-1.1.3.tgz#531b75f828338ebd73d8539685641a17804d1d77"
-  integrity sha512-nH/may8hntYBlcuxepSsR2b95w6SRnP+c/FFt3KKjdTScNjhrN0zZdlT90nisjG/3gK+MvzMbz/F4Rwpgr9RMA==
-
 "@next/env@14.2.3":
   version "14.2.3"
   resolved "https://registry.yarnpkg.com/@next/env/-/env-14.2.3.tgz#d6def29d1c763c0afb397343a15a82e7d92353a0"
@@ -2030,6 +2025,11 @@ lru-cache@^10.2.0:
   version "10.2.2"
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-10.2.2.tgz#48206bc114c1252940c41b25b41af5b545aca878"
   integrity sha512-9hp3Vp2/hFQUiIwKo8XCeFVnrg8Pk3TYNPIR7tJADKi5YfcF7vEaK7avFHTlSy3kOKYaJQaalfEo6YuXdceBOQ==
+
+lucia-auth@^1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/lucia-auth/-/lucia-auth-1.8.0.tgz#075c01d4b4c4eee1622f2b6534100cdde983a5d0"
+  integrity sha512-zI8gT2AOpxTPIxYzToEdgoht+GOflrduZiHPsOEmg4/2pThOyCW3o3lXh+Uwh20tJ9QoXwQe9/Omn6PlUG6efw==
 
 lucia@^3.2.0:
   version "3.2.0"
