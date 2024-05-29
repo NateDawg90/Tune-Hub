@@ -31,3 +31,11 @@ body {
     text-wrap: balance;
   }
 }
+
+input {
+  @apply mt-1 block w-full px-3 py-2 border  rounded-md shadow-sm focus:outline-none focus:ring-davys-gray focus:border-davys-gray sm:text-sm bg-jet-500 text-silver;
+}
+
+label {
+  @apply block text-sm font-medium text-silver;
+}

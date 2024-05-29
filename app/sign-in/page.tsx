@@ -5,11 +5,7 @@ export const metadata = {
   title: 'Sign In',
 };
 const AuthPage = () => {
-  return (
-    <div>
-      <AuthForm />
-    </div>
-  );
+  return <AuthForm />;
 };
 
 export default AuthPage;

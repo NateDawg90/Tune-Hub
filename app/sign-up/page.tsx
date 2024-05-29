@@ -1,15 +1,11 @@
 import React from 'react';
-import AuthForm from '@/components/auth-form';
+import AuthForm from '../(components)/auth-form';
 
 export const metadata = {
   title: 'Sign Up',
 };
 const AuthPage = () => {
-  return (
-    <div>
-      <AuthForm />
-    </div>
-  );
+  return <AuthForm />;
 };
 
 export default AuthPage;
