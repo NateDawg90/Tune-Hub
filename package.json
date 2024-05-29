@@ -9,17 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@lucia-auth/adapter-mongodb": "^1.0.3",
     "axios": "^1.7.2",
-    "lucia": "^3.2.0",
-    "mongodb": "^6.6.2",
     "mongoose": "^8.4.0",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
-    "@types/mongodb": "^4.0.7",
     "@types/mongoose": "^5.11.97",
     "@types/next": "^9.0.0",
     "@types/node": "^20",
