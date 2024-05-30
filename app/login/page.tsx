@@ -1,11 +1,11 @@
-import React from 'react';
-import AuthForm from '../(components)/auth-form';
+import AuthForm from '@/app/(components)/auth-form';
+import { login } from '@/helpers/auth-actions';
 import { validateRequest } from '@/lib/lucia';
 import { redirect } from 'next/navigation';
-import { signUp } from '@/helpers/auth-actions';
+import React from 'react';
 
 export const metadata = {
-  title: 'Sign Up',
+  title: 'Login',
 };
 const AuthPage = async () => {
   const { user } = await validateRequest();
@@ -13,7 +13,7 @@ const AuthPage = async () => {
     return redirect('/');
   }
 
-  return <AuthForm onConfirm={signUp} />;
+  return <AuthForm isLogin={true} onConfirm={login} />;
 };
 
 export default AuthPage;

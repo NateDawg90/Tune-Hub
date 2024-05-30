@@ -2314,7 +2314,7 @@ optionator@^0.9.3:
     type-check "^0.4.0"
     word-wrap "^1.2.5"
 
-oslo@1.2.0:
+oslo@1.2.0, oslo@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/oslo/-/oslo-1.2.0.tgz#3d7e3132de725c4ec9ab738445e959bae99e5b2f"
   integrity sha512-OoFX6rDsNcOQVAD2gQD/z03u4vEjWZLzJtwkmgfRF+KpQUXwdgEXErD7zNhyowmHwHefP+PM9Pw13pgpHMRlzw==

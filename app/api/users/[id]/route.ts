@@ -1,10 +1,8 @@
 import User from '@/app/(models)/User';
-import connectToDb from '@/lib/mongoose';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function PUT(req: Request) {
   try {
-    await connectToDb();
     const body = await req.json();
     const { searchParams } = new URL(req.url);
     const id = searchParams.get('id');
@@ -29,8 +27,6 @@ export async function DELETE(
   { params }: { params: { id: string } }
 ) {
   try {
-    await connectToDb();
-
     const { id } = params;
     console.log({ params, id });
     if (!id) {

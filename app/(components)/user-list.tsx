@@ -24,9 +24,6 @@ const UserList = () => {
               >
                 X
               </button>
-              <h3>
-                {user.firstName} {user.lastName}
-              </h3>
               <p>{user.email}</p>
             </div>
           ))

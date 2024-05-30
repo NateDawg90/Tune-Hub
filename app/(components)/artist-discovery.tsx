@@ -3,6 +3,7 @@ import axios from 'axios';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { IArtist } from '../(models)/Artist';
+import Image from 'next/image';
 
 const ArtistDiscovery = () => {
   const [search, setSearch] = useState('');
@@ -33,7 +34,7 @@ const ArtistDiscovery = () => {
           <Link href={`/artist/${artist._id}`} key={artist._id}>
             <a>
               <div className="artist-card">
-                <img src={artist.photo} alt={artist.name} />
+                <Image src={artist.photo} alt={artist.name} />
                 <h3>{artist.name}</h3>
               </div>
             </a>
