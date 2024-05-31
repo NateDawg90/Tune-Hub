@@ -1,6 +1,7 @@
 import { logout } from '@/helpers/auth-actions';
 import HamburgerMenu from './menus/hamburger-menu';
 import Greeting from './greeting';
+import Link from 'next/link';
 
 const Header = () => {
   return (
@@ -9,9 +10,12 @@ const Header = () => {
         <div className="flex items-center">
           <HamburgerMenu onLogout={logout} />
         </div>
-        <div className="flex items-center justify-center">
+        <Link
+          href={'/'}
+          className="flex items-center justify-center cursor-pointer"
+        >
           <h1 className="text-2xl font-bold text-jet-500">Tunehub</h1>
-        </div>
+        </Link>
         <div className="flex items-center">
           <Greeting />
           <button className="text-jet-500 hover:text-davys-gray focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-davys-gray ml-4">

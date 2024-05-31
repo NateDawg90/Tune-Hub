@@ -12,6 +12,7 @@ export const adapter = new MongodbAdapter(
   mongoose.connection.collection('users')
 );
 
+console.log('lucia/mongo communication');
 export const lucia = new Lucia(adapter, {
   sessionCookie: {
     attributes: {
@@ -25,7 +26,7 @@ export const lucia = new Lucia(adapter, {
   },
 });
 
-export const validateRequest = cache(
+export const verifyAuth = cache(
   async (): Promise<
     { user: User; session: Session } | { user: null; session: null }
   > => {

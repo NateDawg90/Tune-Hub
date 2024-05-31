@@ -28,8 +28,10 @@ async function connectToDb() {
     cached.promise = mongoose
       .connect(MONGODB_URI, opts)
       .then((mongoose) => {
+        console.log('MongoDB Connected');
         return mongoose;
-      });
+      })
+      .catch((e) => console.log(e));
   }
   try {
     cached.conn = await cached.promise;

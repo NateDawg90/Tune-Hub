@@ -1,10 +1,10 @@
-import { validateRequest } from '@/lib/lucia';
+import { verifyAuth } from '@/lib/lucia';
 import connectToDb from '@/lib/mongoose';
 import { NextResponse } from 'next/server';
 
 export async function GET(_: Request) {
   await connectToDb();
-  const { user } = await validateRequest();
+  const { user } = await verifyAuth();
   if (!user) {
     return NextResponse.json(
       { message: 'user not authenticated' },

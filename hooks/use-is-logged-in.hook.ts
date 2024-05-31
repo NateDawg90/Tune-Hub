@@ -22,7 +22,7 @@ export const useIsLoggedIn = () => {
     };
 
     checkLoginStatus();
-  }, [isLoggedIn]);
+  }, [pathname]);
 
-  return { isLoggedIn, user };
+  return { isLoggedIn };
 };

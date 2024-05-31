@@ -20,7 +20,14 @@ export function Form({
   return (
     <form action={formAction} className={className}>
       {children}
-      {state.error && <p>{state.error}</p>}
+      {state.error && (
+        <p
+          className="text-red-500
+      "
+        >
+          {state.error}
+        </p>
+      )}
     </form>
   );
 }

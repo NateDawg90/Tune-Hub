@@ -9,7 +9,7 @@ interface Props {
 }
 const HamburgerMenu = ({ onLogout }: Props) => {
   const router = useRouter();
-  const { isLoggedIn } = useIsLoggedIn();
+  // const { isLoggedIn } = useIsLoggedIn();
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -74,7 +74,7 @@ const HamburgerMenu = ({ onLogout }: Props) => {
             aria-orientation="vertical"
             aria-labelledby="options-menu"
           >
-            {isLoggedIn ? (
+            {/* {isLoggedIn ? (
               <button
                 type="button"
                 className="block px-4 py-2 text-sm  hover:bg-gray-100"
@@ -89,7 +89,7 @@ const HamburgerMenu = ({ onLogout }: Props) => {
                   className="block px-4 py-2 text-sm hover:bg-gray-100 hover:text-jet-300"
                   role="menuitem"
                   onClick={() => {
-                    router.push('/login');
+                    router.push('/?mode=login');
                   }}
                 >
                   Log In
@@ -98,13 +98,13 @@ const HamburgerMenu = ({ onLogout }: Props) => {
                   className="block px-4 py-2 text-sm hover:bg-gray-100 hover:text-jet-300"
                   role="menuitem"
                   onClick={() => {
-                    router.push('/sign-up');
+                    router.push('/?mode=signup');
                   }}
                 >
                   Sign Up
                 </button>
               </>
-            )}
+            )} */}
           </div>
         </div>
       )}
