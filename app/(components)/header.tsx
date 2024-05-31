@@ -1,5 +1,6 @@
 import { logout } from '@/helpers/auth-actions';
 import HamburgerMenu from './menus/hamburger-menu';
+import Greeting from './greeting';
 
 const Header = () => {
   return (
@@ -12,6 +13,7 @@ const Header = () => {
           <h1 className="text-2xl font-bold text-jet-500">Tunehub</h1>
         </div>
         <div className="flex items-center">
+          <Greeting />
           <button className="text-jet-500 hover:text-davys-gray focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-davys-gray ml-4">
             <svg
               className="w-6 h-6"

@@ -1,24 +1,28 @@
+import { IUser } from '@/app/(models)/User';
 import axios from 'axios';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 export const useIsLoggedIn = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState<IUser>();
   const pathname = usePathname();
 
   useEffect(() => {
     const checkLoginStatus = async () => {
+      console.log('checking login status');
       try {
         const response = await axios.get('/api/auth-check');
-        console.log({ response });
         setIsLoggedIn(true);
+        console.log(response.data);
+        setUser(response.data.user);
       } catch (error) {
         setIsLoggedIn(false);
       }
     };
 
     checkLoginStatus();
-  }, [pathname]);
+  }, [isLoggedIn]);
 
-  return { isLoggedIn };
+  return { isLoggedIn, user };
 };

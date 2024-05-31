@@ -1,7 +1,9 @@
 import { validateRequest } from '@/lib/lucia';
+import connectToDb from '@/lib/mongoose';
 import { NextResponse } from 'next/server';
 
 export async function GET(_: Request) {
+  await connectToDb();
   const { user } = await validateRequest();
   if (!user) {
     return NextResponse.json(
@@ -11,7 +13,7 @@ export async function GET(_: Request) {
   }
 
   return NextResponse.json(
-    { message: 'user authenticated' },
+    { message: 'user authenticated', user },
     { status: 200 }
   );
 }

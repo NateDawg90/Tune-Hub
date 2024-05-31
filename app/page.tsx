@@ -1,5 +1,5 @@
 // /components/Home.tsx
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ArtistDiscovery from './(components)/artist-discovery';
 import UserList from './(components)/user-list';
 
