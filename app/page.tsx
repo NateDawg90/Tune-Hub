@@ -10,8 +10,7 @@ export const metadata = {
 const AuthPage = async () => {
   await connectToDb();
   const { user } = await verifyAuth();
-  if (user) {
-    console.log('already logged in, redirecting home');
+  if (!!user) {
     return redirect('/home');
   }
 

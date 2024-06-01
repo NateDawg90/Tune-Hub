@@ -10,7 +10,6 @@ export const useIsLoggedIn = () => {
 
   useEffect(() => {
     const checkLoginStatus = async () => {
-      console.log('checking login status');
       try {
         const response = await axios.get('/api/auth-check');
         setIsLoggedIn(true);

@@ -30,8 +30,7 @@ async function connectToDb() {
       .then((mongoose) => {
         console.log('MongoDB Connected');
         return mongoose;
-      })
-      .catch((e) => console.log(e));
+      });
   }
   try {
     cached.conn = await cached.promise;

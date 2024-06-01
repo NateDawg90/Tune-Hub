@@ -2,8 +2,11 @@ import { logout } from '@/helpers/auth-actions';
 import HamburgerMenu from './menus/hamburger-menu';
 import Greeting from './greeting';
 import Link from 'next/link';
+import { verifyAuth } from '@/lib/lucia';
 
-const Header = () => {
+const Header = async () => {
+  const { user } = await verifyAuth();
+  const email = user?.email;
   return (
     <header className="w-full bg-silver py-4 shadow-md">
       <div className="container mx-auto flex items-center justify-between px-4">
@@ -17,7 +20,7 @@ const Header = () => {
           <h1 className="text-2xl font-bold text-jet-500">Tunehub</h1>
         </Link>
         <div className="flex items-center">
-          <Greeting />
+          <Greeting email={email} />
           <button className="text-jet-500 hover:text-davys-gray focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-davys-gray ml-4">
             <svg
               className="w-6 h-6"

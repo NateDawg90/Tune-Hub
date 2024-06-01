@@ -3,13 +3,14 @@ import React from 'react';
 import { Form } from './form';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { auth } from '@/helpers/auth-actions';
+import { auth, login } from '@/helpers/auth-actions';
 import { AuthMode } from '@/constants';
 
 const AuthForm = () => {
   const mode: AuthMode =
     (useSearchParams().get('mode') as AuthMode) ?? AuthMode.Signup;
-  const onConfirm = auth.bind(null, mode);
+  // const onConfirm = auth.bind(null, mode);
+  const onConfirm = login;
   return (
     <div className="w-full my-auto bg-jet-300 p-8 border border-gray rounded-lg shadow-md ">
       <h2 className="text-2xl font-bold text-center mb-8 text-silver">

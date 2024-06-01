@@ -74,37 +74,14 @@ const HamburgerMenu = ({ onLogout }: Props) => {
             aria-orientation="vertical"
             aria-labelledby="options-menu"
           >
-            {/* {isLoggedIn ? (
-              <button
-                type="button"
-                className="block px-4 py-2 text-sm  hover:bg-gray-100"
-                role="menuitem"
-                onClick={handleLogout}
-              >
-                Log Out
-              </button>
-            ) : (
-              <>
-                <button
-                  className="block px-4 py-2 text-sm hover:bg-gray-100 hover:text-jet-300"
-                  role="menuitem"
-                  onClick={() => {
-                    router.push('/?mode=login');
-                  }}
-                >
-                  Log In
-                </button>
-                <button
-                  className="block px-4 py-2 text-sm hover:bg-gray-100 hover:text-jet-300"
-                  role="menuitem"
-                  onClick={() => {
-                    router.push('/?mode=signup');
-                  }}
-                >
-                  Sign Up
-                </button>
-              </>
-            )} */}
+            <button
+              type="button"
+              className="block px-4 py-2 text-sm  hover:bg-gray-100"
+              role="menuitem"
+              onClick={handleLogout}
+            >
+              Log Out
+            </button>
           </div>
         </div>
       )}

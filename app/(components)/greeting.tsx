@@ -1,7 +1,9 @@
 'use client';
-import { useIsLoggedIn } from '@/hooks/use-is-logged-in.hook';
 
-const Greeting = () => {
+interface Props {
+  email: string;
+}
+const Greeting = ({ email }: Props) => {
   // const { user } = useIsLoggedIn();
 
   // if (!user) {
@@ -9,7 +11,7 @@ const Greeting = () => {
   // }
   return (
     <div className="flex items-center">
-      {/* <p className="text-jet-500">Hello, {user.email}</p> */}
+      <p className="text-jet-500">Welcome, {email}</p>
     </div>
   );
 };

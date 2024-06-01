@@ -5,6 +5,7 @@ import UserList from '../../(components)/user-list';
 import { verifyAuth } from '@/lib/lucia';
 import { redirect } from 'next/navigation';
 import { Metadata } from 'next';
+import connectToDb from '@/lib/mongoose';
 
 export const metadata: Metadata = {
   title: 'Login to Tunehub',
@@ -12,9 +13,10 @@ export const metadata: Metadata = {
 };
 
 const Home = async () => {
+  await connectToDb();
+
   const { user } = await verifyAuth();
   if (!user) {
-    console.log('not logged in, redirecting to auth page');
     return redirect('/');
   }
 

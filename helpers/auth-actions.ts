@@ -55,7 +55,7 @@ export async function signUp(
   const hashedPassword = await new Argon2id().hash(password);
 
   try {
-    await connectToDb();
+    // await connectToDb();
     const user = await User.create({
       email: email,
       password: hashedPassword,
