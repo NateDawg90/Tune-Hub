@@ -1,20 +1,17 @@
 // /components/Home.tsx
 import React, { useState, useEffect } from 'react';
-import ArtistDiscovery from './(components)/artist-discovery';
-import UserList from './(components)/user-list';
+import AuthForm from './(components)/auth-form';
+import { login } from '@/helpers/auth-actions';
+import { redirect } from 'next/navigation';
+import { verifyAuth } from '@/lib/lucia';
 
-const Home = () => {
-  return (
-    <div className="home">
-      <div className="hero">
-        <h1>Welcome to Tunehub</h1>
-        {/* Add your animation here */}
-        <UserList />
-        <p>Discover new music and artists</p>
-        <ArtistDiscovery />
-      </div>
-    </div>
-  );
+const Home = async () => {
+  const { user } = await verifyAuth();
+
+  if (!!user) {
+    redirect('/home');
+  }
+  return <AuthForm onConfirm={login} />;
 };
 
 export default Home;

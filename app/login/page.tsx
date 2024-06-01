@@ -1,6 +1,6 @@
 import AuthForm from '@/app/(components)/auth-form';
 import { login } from '@/helpers/auth-actions';
-import { validateRequest } from '@/lib/lucia';
+import { verifyAuth } from '@/lib/lucia';
 import { redirect } from 'next/navigation';
 import React from 'react';
 
@@ -8,7 +8,7 @@ export const metadata = {
   title: 'Login',
 };
 const AuthPage = async () => {
-  const { user } = await validateRequest();
+  const { user } = await verifyAuth();
   if (user) {
     return redirect('/');
   }

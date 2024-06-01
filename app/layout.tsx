@@ -22,8 +22,7 @@ export default function RootLayout({
         <div
           className={`min-h-screen flex flex-col items-center  bg-jet-500 ${inter.className}`}
         >
-          <Header />
-          <main className="flex flex-grow mx-auto">{children}</main>
+          {children}
           <Footer />
         </div>
       </body>

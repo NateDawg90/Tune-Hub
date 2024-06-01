@@ -1,14 +1,15 @@
 import React from 'react';
 import { ActionResult, Form } from './form';
 
-export interface AuthFormProps {
-  isLogin?: boolean;
-  onConfirm: (
-    prevState: any,
-    formData: FormData
-  ) => Promise<ActionResult>;
-}
-const AuthForm = ({ isLogin = false, onConfirm }: AuthFormProps) => {
+// export interface AuthFormProps {
+//   isLogin?: boolean;
+//   onConfirm: (
+//     prevState: any,
+//     formData: FormData
+//   ) => Promise<ActionResult>;
+// }
+const AuthForm = () => {
+  const;
   return (
     <div className="w-full my-auto bg-jet-300 p-8 border border-gray rounded-lg shadow-md ">
       <h2 className="text-2xl font-bold text-center mb-8 text-silver">
