@@ -1,14 +1,15 @@
+'use server';
+
 import { ActionResult } from '@/app/(components)/form';
 import User from '@/app/(models)/User';
-import { lucia, validateRequest } from '@/lib/lucia';
+import { lucia, verifyAuth } from '@/lib/lucia';
 import connectToDb from '@/lib/mongoose';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { Argon2id } from 'oslo/password';
 
 export const logout = async (): Promise<ActionResult> => {
-  'use server';
-  const { session } = await validateRequest();
+  const { session } = await verifyAuth();
   if (!session) {
     return {
       error: 'Unauthorized',
@@ -23,7 +24,7 @@ export const logout = async (): Promise<ActionResult> => {
     sessionCookie.value,
     sessionCookie.attributes
   );
-  return redirect('/login');
+  return redirect('/');
 };
 
 export async function signUp(
@@ -72,7 +73,7 @@ export async function signUp(
       error: 'An unknown error occurred',
     };
   }
-  return redirect('/');
+  return redirect('/home');
 }
 
 export const login = async (
@@ -125,5 +126,16 @@ export const login = async (
     sessionCookie.value,
     sessionCookie.attributes
   );
-  return redirect('/');
+  return redirect('/home');
+};
+
+export const auth = async (
+  signUpMode: boolean,
+  prevState: any,
+  formData: FormData
+) => {
+  if (signUpMode) {
+    return signUp(prevState, formData);
+  }
+  return login(prevState, formData);
 };

@@ -1,8 +1,8 @@
-import { validateRequest } from '@/lib/lucia';
+import { verifyAuth } from '@/lib/lucia';
 import { NextResponse } from 'next/server';
 
 export async function GET(_: Request) {
-  const { user } = await validateRequest();
+  const { user } = await verifyAuth();
   if (!user) {
     return NextResponse.json(
       { message: 'user not authenticated' },

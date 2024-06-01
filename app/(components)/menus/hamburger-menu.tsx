@@ -1,6 +1,4 @@
 'use client';
-import { useIsLoggedIn } from '@/hooks/use-is-logged-in.hook';
-import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { ActionResult } from '../form';
 
@@ -8,8 +6,6 @@ interface Props {
   onLogout: () => Promise<ActionResult>;
 }
 const HamburgerMenu = ({ onLogout }: Props) => {
-  const router = useRouter();
-  const { isLoggedIn } = useIsLoggedIn();
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -74,37 +70,14 @@ const HamburgerMenu = ({ onLogout }: Props) => {
             aria-orientation="vertical"
             aria-labelledby="options-menu"
           >
-            {isLoggedIn ? (
-              <button
-                type="button"
-                className="block px-4 py-2 text-sm  hover:bg-gray-100"
-                role="menuitem"
-                onClick={handleLogout}
-              >
-                Log Out
-              </button>
-            ) : (
-              <>
-                <button
-                  className="block px-4 py-2 text-sm hover:bg-gray-100 hover:text-jet-300"
-                  role="menuitem"
-                  onClick={() => {
-                    router.push('/login');
-                  }}
-                >
-                  Log In
-                </button>
-                <button
-                  className="block px-4 py-2 text-sm hover:bg-gray-100 hover:text-jet-300"
-                  role="menuitem"
-                  onClick={() => {
-                    router.push('/sign-up');
-                  }}
-                >
-                  Sign Up
-                </button>
-              </>
-            )}
+            <button
+              type="button"
+              className="block px-4 py-2 text-sm  hover:bg-gray-100"
+              role="menuitem"
+              onClick={handleLogout}
+            >
+              Log Out
+            </button>
           </div>
         </div>
       )}
