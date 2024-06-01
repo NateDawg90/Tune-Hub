@@ -1,17 +1,23 @@
 // /components/Home.tsx
 import React, { useState, useEffect } from 'react';
 import AuthForm from './(components)/auth-form';
-import { login } from '@/helpers/auth-actions';
 import { redirect } from 'next/navigation';
 import { verifyAuth } from '@/lib/lucia';
+import connectToDb from '@/lib/mongoose';
 
-const Home = async () => {
+interface Props {
+  searchParams: {
+    signup: string;
+  };
+}
+const Home = async ({ searchParams }: Props) => {
+  await connectToDb();
   const { user } = await verifyAuth();
-
+  const signUpMode = searchParams.signup === 'true';
   if (!!user) {
     redirect('/home');
   }
-  return <AuthForm onConfirm={login} />;
+  return <AuthForm signUpMode={signUpMode} />;
 };
 
 export default Home;

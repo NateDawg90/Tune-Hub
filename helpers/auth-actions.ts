@@ -1,3 +1,5 @@
+'use server';
+
 import { ActionResult } from '@/app/(components)/form';
 import User from '@/app/(models)/User';
 import { lucia, verifyAuth } from '@/lib/lucia';
@@ -7,7 +9,6 @@ import { redirect } from 'next/navigation';
 import { Argon2id } from 'oslo/password';
 
 export const logout = async (): Promise<ActionResult> => {
-  'use server';
   const { session } = await verifyAuth();
   if (!session) {
     return {
@@ -126,4 +127,15 @@ export const login = async (
     sessionCookie.attributes
   );
   return redirect('/home');
+};
+
+export const auth = async (
+  signUpMode: boolean,
+  prevState: any,
+  formData: FormData
+) => {
+  if (signUpMode) {
+    return signUp(prevState, formData);
+  }
+  return login(prevState, formData);
 };
