@@ -5,12 +5,13 @@ import { ActionResult } from '../form';
 interface Props {
   onLogout: () => Promise<ActionResult>;
 }
+
 const HamburgerMenu = ({ onLogout }: Props) => {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const toggleOpen = () => {
-    setOpen(!open);
+    setOpen((prev) => !prev);
   };
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -39,18 +40,13 @@ const HamburgerMenu = ({ onLogout }: Props) => {
   };
 
   return (
-    <div
-      className="relative inline-block text-left"
-      ref={dropdownRef}
-    >
+    <div className="relative flex items-center" ref={dropdownRef}>
       <button
         onClick={toggleOpen}
-        className="text-silver hover:text-davys-gray focus:outline-none "
+        className="hover:text-davys-gray focus:outline-none flex items-center justify-center"
       >
         <svg
-          className="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
+          className="w-6 h-6 fill-none stroke-current text-silver"
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -63,7 +59,7 @@ const HamburgerMenu = ({ onLogout }: Props) => {
         </svg>
       </button>
       {open && (
-        <div className="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-jet-500 text-silverring-1 ring-black ring-opacity-5 z-10">
+        <div className="absolute left-0 top-full mt-1 w-48 rounded-md shadow-lg bg-jet-500 ring-1 ring-black ring-opacity-5 z-10">
           <div
             className="py-1"
             role="menu"
@@ -71,10 +67,8 @@ const HamburgerMenu = ({ onLogout }: Props) => {
             aria-labelledby="options-menu"
           >
             <button
-              type="button"
-              className="block px-4 py-2 text-sm  hover:bg-gray-100"
-              role="menuitem"
               onClick={handleLogout}
+              className="block px-4 py-2 text-sm text-silver hover:bg-jet-400 w-full text-left"
             >
               Log Out
             </button>

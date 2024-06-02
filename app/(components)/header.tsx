@@ -5,9 +5,7 @@ const Header = () => {
   return (
     <header className="w-full bg-jet-500 py-4 shadow-md">
       <div className="container mx-auto flex items-center justify-between px-4">
-        <div className="flex items-center">
-          <HamburgerMenu onLogout={logout} />
-        </div>
+        <HamburgerMenu onLogout={logout} />
         <div className="flex items-center justify-center">
           <h1 className="text-2xl font-bold text-silver">Tunehub</h1>
         </div>
