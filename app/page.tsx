@@ -1,5 +1,5 @@
 // /components/Home.tsx
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import AuthForm from './(components)/auth-form';
 import { redirect } from 'next/navigation';
 import { verifyAuth } from '@/lib/lucia';
@@ -10,14 +10,18 @@ interface Props {
     signup: string;
   };
 }
-const Home = async ({ searchParams }: Props) => {
+const Auth = async ({ searchParams }: Props) => {
   await connectToDb();
   const { user } = await verifyAuth();
   const signUpMode = searchParams.signup === 'true';
-  if (!!user) {
+  if (user) {
     redirect('/home');
   }
-  return <AuthForm signUpMode={signUpMode} />;
+  return (
+    <main className="flex-grow flex items-center justify-center">
+      <AuthForm signUpMode={signUpMode} />
+    </main>
+  );
 };
 
-export default Home;
+export default Auth;

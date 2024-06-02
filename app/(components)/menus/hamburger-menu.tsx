@@ -45,7 +45,7 @@ const HamburgerMenu = ({ onLogout }: Props) => {
     >
       <button
         onClick={toggleOpen}
-        className="text-jet-500 hover:text-davys-gray focus:outline-none "
+        className="text-silver hover:text-davys-gray focus:outline-none "
       >
         <svg
           className="w-6 h-6"
@@ -63,7 +63,7 @@ const HamburgerMenu = ({ onLogout }: Props) => {
         </svg>
       </button>
       {open && (
-        <div className="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-silver text-jet-500 ring-1 ring-black ring-opacity-5 z-10">
+        <div className="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-jet-500 text-silverring-1 ring-black ring-opacity-5 z-10">
           <div
             className="py-1"
             role="menu"

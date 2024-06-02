@@ -1,10 +1,10 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose, { ObjectId, Schema } from 'mongoose';
 
 // /models/Song.ts
 export interface ISong {
   track: number;
   name: string;
-  albumId: string;
+  album: ObjectId;
   length: string;
 }
 
@@ -12,7 +12,7 @@ const songSchema = new Schema<ISong>(
   {
     track: Number,
     name: String,
-    albumId: String,
+    album: { type: mongoose.Schema.Types.ObjectId, ref: 'Album' },
     length: String,
   },
   {
