@@ -12,7 +12,7 @@ export default function AuthLayout({
       <Header />
       <main className="flex-grow container mx-auto px-4">
         {children}
-      </main>{' '}
+      </main>
     </>
   );
 }
