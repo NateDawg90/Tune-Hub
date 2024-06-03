@@ -1,14 +1,15 @@
 // /models/Album.ts
-import mongoose from 'mongoose';
+import mongoose, { Document, ObjectId } from 'mongoose';
 import { ISong } from './Song';
+import { IArtist } from './Artist';
 
-export interface IAlbum {
+export interface IAlbum extends Document {
   id: string;
   name: string;
   artwork: string;
   year: number;
-  artistId: string;
-  songs: ISong[];
+  artist: IArtist['_id'];
+  songs: ObjectId[]; // Correct type
 }
 
 const albumSchema = new mongoose.Schema<IAlbum>(
@@ -16,7 +17,11 @@ const albumSchema = new mongoose.Schema<IAlbum>(
     name: String,
     artwork: String,
     year: Number,
-    artistId: String,
+    artist: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Artist',
+      required: true,
+    },
     songs: [
       {
         type: mongoose.Schema.Types.ObjectId,

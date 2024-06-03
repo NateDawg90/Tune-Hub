@@ -1,8 +1,7 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose, { Document, Schema } from 'mongoose';
 
 // /models/Artist.ts
-export interface IArtist {
-  _id: string;
+export interface IArtist extends Document {
   name: string;
   photo: string;
   genre: string;

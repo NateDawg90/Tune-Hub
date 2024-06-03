@@ -1,6 +1,6 @@
 // /pages/api/artists/[id].ts
 import Artist from '@/app/(models)/Artist';
-import connectToDb from '@/lib/mongoose';
+import connectToDb from '@/db/mongoose';
 import { NextResponse } from 'next/server';
 
 export async function GET(req: Request) {
