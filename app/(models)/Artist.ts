@@ -1,4 +1,4 @@
-import mongoose, { Document, Schema } from 'mongoose';
+import { Document } from 'mongoose';
 
 // /models/Artist.ts
 export interface IArtist extends Document {
@@ -8,19 +8,11 @@ export interface IArtist extends Document {
   followers: number;
 }
 
-const artistSchema = new Schema<IArtist>(
-  {
-    name: String,
-    photo: String,
-    genre: String,
-    followers: Number,
-  },
-  {
-    timestamps: true,
-  }
-);
-
-const Artist =
-  mongoose.models.Artist ||
-  mongoose.model<IArtist>('Artist', artistSchema);
-export default Artist;
+export interface Artist {
+  _id: string;
+  name: string;
+  photo: string;
+  genre: string;
+  followers: number;
+  createdAt: string;
+}

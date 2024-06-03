@@ -1,8 +1,6 @@
 import mongoose from 'mongoose';
-import Artist from '@/app/(models)/Artist';
+import { Artist, Album, Song } from '@/app/(models)';
 import axios from 'axios';
-import Album from '@/app/(models)/Album';
-import Song from '@/app/(models)/Song';
 import { ARTISTS } from '@/constants/1000-artists';
 import dotenv from 'dotenv';
 dotenv.config({ path: '.env.local' });
@@ -16,7 +14,6 @@ export const seedDatabase = async () => {
     },
   };
   try {
-    console.log('Seeding database...', mongoUri);
     await mongoose.connect(mongoUri!);
     for (let i in ARTISTS) {
       const artistName = ARTISTS[i];

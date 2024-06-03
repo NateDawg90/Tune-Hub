@@ -1,5 +1,6 @@
 import { logout } from '@/helpers/auth-actions';
 import HamburgerMenu from './menus/hamburger-menu';
+import Link from 'next/link';
 
 const Header = () => {
   return (
@@ -7,7 +8,12 @@ const Header = () => {
       <div className="container mx-auto flex items-center justify-between px-4">
         <HamburgerMenu onLogout={logout} />
         <div className="flex items-center justify-center">
-          <h1 className="text-2xl font-bold text-silver">Tunehub</h1>
+          <Link
+            href="/home"
+            className="text-2xl font-bold text-silver"
+          >
+            Tunehub
+          </Link>
         </div>
         <div className="flex items-center">
           <button className="text-silver hover:text-davys-gray focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-davys-gray ml-4">

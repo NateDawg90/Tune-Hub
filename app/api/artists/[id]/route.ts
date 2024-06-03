@@ -1,5 +1,5 @@
 // /pages/api/artists/[id].ts
-import Artist from '@/app/(models)/Artist';
+import { Artist } from '@/app/(models)';
 import connectToDb from '@/db/mongoose';
 import { NextResponse } from 'next/server';
 

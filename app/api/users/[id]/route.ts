@@ -1,4 +1,4 @@
-import User from '@/app/(models)/User';
+import { User } from '@/app/(models)';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function PUT(req: Request) {
@@ -28,7 +28,6 @@ export async function DELETE(
 ) {
   try {
     const { id } = params;
-    console.log({ params, id });
     if (!id) {
       return NextResponse.json(
         { message: 'id query parameter is required' },

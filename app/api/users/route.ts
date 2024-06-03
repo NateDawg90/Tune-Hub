@@ -1,4 +1,4 @@
-import User from '@/app/(models)/User';
+import { User } from '@/app/(models)';
 import connectToDb from '@/db/mongoose';
 import { NextResponse } from 'next/server';
 

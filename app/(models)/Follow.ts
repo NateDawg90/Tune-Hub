@@ -1,23 +1,8 @@
-import mongoose, { Schema } from 'mongoose';
+import { Document, ObjectId } from 'mongoose';
+import { IArtist } from './Artist';
 
 // /models/Follow.ts
-export interface IFollow {
-  artistId: string;
-  userId: string;
+export interface IFollow extends Document {
+  artist: IArtist['_id'];
+  user: ObjectId;
 }
-
-const followSchema = new Schema<IFollow>(
-  {
-    artistId: String,
-    userId: String,
-  },
-  {
-    timestamps: true,
-  }
-);
-
-const Follow =
-  mongoose.models.Follow ||
-  mongoose.model<IFollow>('Follow', followSchema);
-
-export default Follow;

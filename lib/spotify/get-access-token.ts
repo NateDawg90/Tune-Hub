@@ -7,8 +7,6 @@ export const getAccessToken = async () => {
   const client_secret =
     process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_SECRET!;
 
-  console.log('Client ID:', client_id);
-  console.log('Client Secret:', client_secret);
   const url = 'https://accounts.spotify.com/api/token';
   const data = new URLSearchParams({
     grant_type: 'client_credentials',
