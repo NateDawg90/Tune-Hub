@@ -1,48 +1,70 @@
 'use client';
 import axios from 'axios';
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { IArtist } from '../(models)/Artist';
 import Image from 'next/image';
+import Link from 'next/link';
+import { Album } from '../(models)/Album';
 
 const ArtistDiscovery = () => {
-  const [search, setSearch] = useState('');
+  const [albums, setAlbums] = useState<Album[]>([]);
+  const [searchTerm, setSearchTerm] = useState<string>('');
 
   useEffect(() => {
-    const fetchArtists = async () => {
-      const res = await axios.get('/api/artists');
-      // setArtists(res.data);
+    const fetchAlbums = async () => {
+      try {
+        const response = await axios.get('/api/albums');
+        console.log('Albums:', response.data);
+        if (!response.data) return console.error('No albums found');
+        setAlbums(response.data);
+      } catch (error) {
+        console.error('Error fetching albums:', error);
+      }
     };
-    fetchArtists();
+
+    fetchAlbums();
   }, []);
 
-  const artists: IArtist[] = [];
-  const filteredArtists = artists.filter((artist) =>
-    artist.name.toLowerCase().includes(search.toLowerCase())
-  );
+  const handleSearchChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const filteredAlbums = albums.filter((album) => {
+    return (
+      album.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      album.artist.name
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase())
+    );
+  });
 
   return (
-    <>
-      <input
-        type="text"
-        placeholder="Search artists..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
-      <div className="artist-list">
-        {filteredArtists.slice(0, 20).map((artist) => (
-          <Link href={`/artist/${artist._id}`} key={artist._id}>
-            <a>
-              <div className="artist-card">
-                <Image src={artist.photo} alt={artist.name} />
-                <h3>{artist.name}</h3>
-              </div>
-            </a>
+    <div className="flex flex-col items-center">
+      <div className="w-1/2 ">
+        <input
+          type="text"
+          placeholder="Search artists or albums..."
+          value={searchTerm}
+          onChange={handleSearchChange}
+          className=" p-2 mb-4 border rounded"
+        />
+      </div>
+      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
+        {filteredAlbums.slice(0, 50).map((album) => (
+          <Link key={album._id} href={`/albums/${album._id}`}>
+            <Image
+              key={album._id}
+              src={album.artwork}
+              alt={album.name}
+              width={300}
+              height={300}
+              className="w-full h-auto mb-2 shadow"
+            />
           </Link>
         ))}
       </div>
-    </>
+    </div>
   );
 };
-
 export default ArtistDiscovery;

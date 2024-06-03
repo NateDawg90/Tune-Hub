@@ -1,4 +1,6 @@
+import { MusicPlayerProvider } from '@/store/music-player-context';
 import Header from '../(components)/header';
+import MusicPlayer from '../(components)/music-player';
 
 export const metadata = {
   title: 'Tunehub',
@@ -8,11 +10,12 @@ export default function AuthLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <>
+    <MusicPlayerProvider>
       <Header />
       <main className="flex-grow container mx-auto px-4">
         {children}
       </main>
-    </>
+      <MusicPlayer />
+    </MusicPlayerProvider>
   );
 }

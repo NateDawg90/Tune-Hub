@@ -1,4 +1,5 @@
-import mongoose, { ObjectId, Schema } from 'mongoose';
+import { ObjectId } from 'mongoose';
+import { Album } from './Album';
 
 // /models/Song.ts
 export interface ISong {
@@ -8,18 +9,11 @@ export interface ISong {
   length: string;
 }
 
-const songSchema = new Schema<ISong>(
-  {
-    track: Number,
-    name: String,
-    album: { type: mongoose.Schema.Types.ObjectId, ref: 'Album' },
-    length: String,
-  },
-  {
-    timestamps: true,
-  }
-);
-
-const Song =
-  mongoose.models.Song || mongoose.model<ISong>('Song', songSchema);
-export default Song;
+export interface Song {
+  _id: string;
+  track: number;
+  name: string;
+  album: Album;
+  length: string;
+  createdAt: string;
+}

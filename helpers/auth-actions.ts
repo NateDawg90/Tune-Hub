@@ -1,9 +1,9 @@
 'use server';
 
 import { ActionResult } from '@/app/(components)/form';
-import User from '@/app/(models)/User';
+import { User } from '@/app/(models)';
 import { lucia, verifyAuth } from '@/lib/lucia';
-import connectToDb from '@/lib/mongoose';
+import connectToDb from '@/db/mongoose';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { Argon2id } from 'oslo/password';

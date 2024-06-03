@@ -3,7 +3,7 @@ import React from 'react';
 import AuthForm from './(components)/auth-form';
 import { redirect } from 'next/navigation';
 import { verifyAuth } from '@/lib/lucia';
-import connectToDb from '@/lib/mongoose';
+import connectToDb from '@/db/mongoose';
 
 interface Props {
   searchParams: {
