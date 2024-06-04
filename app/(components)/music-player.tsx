@@ -65,7 +65,7 @@ const MusicPlayer = () => {
         </div>
       </div>
       <div className="flex items-center">
-        <VolDown className=" h-6 volume-icon" />
+        <VolDown className=" h-6 icon" />
         <input
           type="range"
           min="0"
@@ -75,7 +75,7 @@ const MusicPlayer = () => {
           onChange={handleVolumeChange}
           className="mx-2 w-32 h-2 bg-gray-700 rounded-full appearance-none slider-thumb"
         />
-        <VolUp className=" h-6 volume-icon" />
+        <VolUp className=" h-6 icon" />
       </div>
     </div>
   );

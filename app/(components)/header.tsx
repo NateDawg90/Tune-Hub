@@ -1,8 +1,11 @@
 import { logout } from '@/helpers/auth-actions';
 import HamburgerMenu from './menus/hamburger-menu';
 import Link from 'next/link';
-
-const Header = () => {
+import ProfileIcon from 'icon/user-regular.svg';
+interface Props {
+  email: string;
+}
+const Header = ({ email }: Props) => {
   return (
     <header className="w-full bg-jet-500 py-4 shadow-md">
       <div className="container mx-auto flex items-center justify-between px-4">
@@ -16,22 +19,13 @@ const Header = () => {
           </Link>
         </div>
         <div className="flex items-center">
-          <button className="text-silver hover:text-davys-gray focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-davys-gray ml-4">
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M5.121 20.121A8.965 8.965 0 0012 22a8.965 8.965 0 006.879-1.879M12 14a7 7 0 110-14 7 7 0 010 14zm0 0c-2.737 0-5.095 1.342-6.121 3.121"
-              />
-            </svg>
-          </button>
+          Welcome, {email}
+          <Link
+            href={'/profile'}
+            className="text-silver hover:text-davys-gray focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-davys-gray ml-4"
+          >
+            <ProfileIcon className="icon h-5" />
+          </Link>
         </div>
       </div>
     </header>

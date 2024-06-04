@@ -1,15 +1,17 @@
+'use client';
 import { useMusicPlayer } from '@/store/music-player-context';
 import { Song } from '../(models)/Song';
 import { PauseIcon, PlayIcon } from './icons';
 
 interface SongViewProps {
   song: Song;
-  isPlaying: boolean;
 }
 
-const SongView = ({ song, isPlaying }: SongViewProps) => {
-  const { togglePlayPause } = useMusicPlayer();
-
+const SongView = ({ song }: SongViewProps) => {
+  const { togglePlayPause, currentSong, isPlaying } =
+    useMusicPlayer();
+  const thisSongIsPlaying =
+    currentSong?._id === song._id && isPlaying;
   return (
     <div className="flex items-center justify-between p-2 ">
       <span>{song.name}</span>
@@ -17,7 +19,7 @@ const SongView = ({ song, isPlaying }: SongViewProps) => {
         onClick={() => togglePlayPause(song)}
         className="text-blue-500"
       >
-        {isPlaying ? <PauseIcon /> : <PlayIcon />}
+        {thisSongIsPlaying ? <PauseIcon /> : <PlayIcon />}
       </button>
     </div>
   );
