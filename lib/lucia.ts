@@ -59,7 +59,7 @@ export const verifyAuth = cache(
         );
       }
     } catch {}
-    return result;
+    return JSON.parse(JSON.stringify(result));
   }
 );
 

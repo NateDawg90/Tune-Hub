@@ -1,77 +1,29 @@
-'use client';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Album } from '@/app/(models)/Album';
 import Image from 'next/image';
-import Song from './song';
-import { useMusicPlayer } from '@/store/music-player-context';
+import SongView from './song';
+import { Song } from '../(models)/Song';
 interface AlbumProps {
-  id: string;
+  artwork: string;
+  name: string;
+  songs: Song[];
 }
-const AlbumComponent = ({ id }: AlbumProps) => {
-  const [album, setAlbum] = useState<Album>();
-  const [isFollowing, setIsFollowing] = useState(false);
-  const { currentSong, isPlaying } = useMusicPlayer();
-
-  useEffect(() => {
-    if (id) {
-      const fetchAlbum = async () => {
-        try {
-          const response = await axios.get(`/api/albums/${id}`);
-          setAlbum(response.data);
-        } catch (err) {
-          console.error('Error fetching album:', err);
-        }
-      };
-
-      fetchAlbum();
-    }
-  }, [id]);
-
-  const handleFollowArtist = async () => {
-    try {
-      // Implement the follow artist logic here
-      setIsFollowing(true);
-    } catch (err) {
-      console.error('Error following artist:', err);
-    }
-  };
-
-  if (!album) return <div>Loading...</div>;
-
+const AlbumComponent = ({ artwork, name, songs }: AlbumProps) => {
   return (
     <div className="p-4">
-      <div className="flex items-center mb-4">
+      <div className="flex mb-4 items-end">
         <Image
           width={500}
           height={500}
-          src={album.artwork}
-          alt={album.name}
+          src={artwork}
+          alt={name}
           className="w-48 h-48 object-cover rounded"
         />
-        <div className="ml-4">
-          <h1 className="text-3xl font-bold">{album.name}</h1>
-          <p className="text-lg text-gray-600">{album.artist.name}</p>
-          <button
-            onClick={handleFollowArtist}
-            className={`mt-2 px-4 py-2 rounded ${
-              isFollowing ? 'bg-gray-300' : 'bg-blue-500 text-white'
-            }`}
-            disabled={isFollowing}
-          >
-            {isFollowing ? 'Following' : 'Follow'}
-          </button>
-        </div>
+        <h1 className="text-3xl font-bold">{name}</h1>
       </div>
       <div>
         <h2 className="text-2xl font-bold mb-4">Tracks</h2>
         <ul className="list-disc list-inside">
-          {album.songs.map((song) => (
-            <Song
-              key={song._id}
-              song={song}
-              isPlaying={currentSong?._id === song._id && isPlaying}
-            />
+          {songs.map((song) => (
+            <SongView key={song._id} song={song} />
           ))}
         </ul>
       </div>

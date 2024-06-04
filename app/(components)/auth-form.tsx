@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActionResult, Form } from './form';
+import { Form } from './form';
 import Link from 'next/link';
 import { auth } from '@/helpers/auth-actions';
 
