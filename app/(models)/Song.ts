@@ -7,6 +7,7 @@ export interface ISong {
   name: string;
   album: ObjectId;
   length: string;
+  previewUrl: string;
 }
 
 export interface Song {
@@ -16,4 +17,5 @@ export interface Song {
   album: Album;
   length: string;
   createdAt: string;
+  previewUrl: string;
 }

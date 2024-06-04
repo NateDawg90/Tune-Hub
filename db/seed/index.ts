@@ -57,8 +57,9 @@ export const seedDatabase = async () => {
           track: trackData.track_number,
           length: trackData.duration_ms,
           album: album._id,
+          previewUrl: trackData.preview_url,
         });
-        console.log('Seeding song:', trackData.name);
+        console.log('Seeding song:', song);
         await song.save();
 
         album.songs.push(song._id);
