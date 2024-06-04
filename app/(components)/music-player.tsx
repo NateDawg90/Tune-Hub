@@ -13,11 +13,9 @@ const MusicPlayer = () => {
   const {
     currentSong,
     isPlaying,
-    pauseSong,
-    playSong,
-    resumeSong,
     volume,
     setVolume,
+    togglePlayPause,
   } = useMusicPlayer();
 
   useEffect(() => {
@@ -53,20 +51,11 @@ const MusicPlayer = () => {
       ? currentSong.name.substring(0, 30) + '...'
       : currentSong.name;
 
-  const handlePlayPauseClick = () => {
-    if (isPlaying) {
-      pauseSong();
-    } else if (currentSong.previewUrl) {
-      resumeSong();
-    } else {
-      playSong(currentSong);
-    }
-  };
   return (
     <div className="fixed bottom-0 w-full bg-jet-500 text-silver p-4 shadow-md flex items-center justify-between">
       <div className="flex items-center">
         <button
-          onClick={handlePlayPauseClick}
+          onClick={() => togglePlayPause(currentSong)}
           className="focus:outline-none"
         >
           {isPlaying ? <PauseIcon /> : <PlayIcon />}

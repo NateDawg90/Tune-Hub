@@ -12,11 +12,9 @@ import { Song } from '@/app/(models)/Song';
 interface MusicPlayerContextProps {
   currentSong?: Song;
   isPlaying: boolean;
-  playSong: (song: Song) => void;
-  pauseSong: () => void;
-  resumeSong: () => void;
   volume: number;
   setVolume: (volume: number) => void;
+  togglePlayPause: (song: Song) => void;
 }
 
 const MusicPlayerContext = createContext<
@@ -57,6 +55,18 @@ export const MusicPlayerProvider = ({
     }
   };
 
+  const togglePlayPause = (song: Song) => {
+    if (currentSong && currentSong._id === song._id) {
+      if (isPlaying) {
+        pauseSong();
+      } else {
+        resumeSong();
+      }
+    } else {
+      playSong(song);
+    }
+  };
+
   const setVolume = (volume: number) => {
     setVolumeState(volume);
     if (audioRef.current) {
@@ -70,10 +80,8 @@ export const MusicPlayerProvider = ({
         currentSong,
         isPlaying,
         volume,
-        playSong,
-        pauseSong,
-        resumeSong,
         setVolume,
+        togglePlayPause,
       }}
     >
       {children}
