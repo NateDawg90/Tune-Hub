@@ -1,3 +1,4 @@
+import { useMusicPlayer } from '@/store/music-player-context';
 import { Song } from '../(models)/Song';
 
 interface SongViewProps {
@@ -5,6 +6,7 @@ interface SongViewProps {
   isPlaying: boolean;
   onPlay: (song: Song) => void;
   onPause: () => void;
+  onResume: () => void;
 }
 
 const SongView = ({
@@ -12,10 +14,18 @@ const SongView = ({
   isPlaying,
   onPlay,
   onPause,
+  onResume,
 }: SongViewProps) => {
+  const { currentSong } = useMusicPlayer();
+  const isCurrentSong = currentSong?._id === song._id;
+
   const handleClick = () => {
-    if (isPlaying) {
-      onPause();
+    if (isCurrentSong) {
+      if (isPlaying) {
+        onPause();
+      } else {
+        onResume();
+      }
     } else {
       onPlay(song);
     }
@@ -49,7 +59,7 @@ const SongView = ({
   );
 
   return (
-    <div className="flex items-center justify-between p-2 border-b border-gray-300">
+    <div className="flex items-center justify-between p-2 ">
       <span>{song.name}</span>
       <button onClick={handleClick} className="text-blue-500">
         {isPlaying ? pauseButton : playButton}

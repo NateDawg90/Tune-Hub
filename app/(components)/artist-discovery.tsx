@@ -13,7 +13,6 @@ const ArtistDiscovery = () => {
     const fetchAlbums = async () => {
       try {
         const response = await axios.get('/api/albums');
-        console.log('Albums:', response.data);
         if (!response.data) return console.error('No albums found');
         setAlbums(response.data);
       } catch (error) {

@@ -45,6 +45,7 @@ const songSchema = new Schema<ISong>(
     name: String,
     album: { type: mongoose.Schema.Types.ObjectId, ref: 'Album' },
     length: String,
+    previewUrl: String,
   },
   {
     timestamps: true,

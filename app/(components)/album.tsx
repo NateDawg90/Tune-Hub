@@ -11,11 +11,10 @@ interface AlbumProps {
 const AlbumComponent = ({ id }: AlbumProps) => {
   const [album, setAlbum] = useState<Album>();
   const [isFollowing, setIsFollowing] = useState(false);
-  const { currentSong, isPlaying, pauseSong, playSong } =
+  const { currentSong, isPlaying, pauseSong, playSong, resumeSong } =
     useMusicPlayer();
 
   useEffect(() => {
-    console.log('id:', id);
     if (id) {
       const fetchAlbum = async () => {
         try {
@@ -70,6 +69,7 @@ const AlbumComponent = ({ id }: AlbumProps) => {
         <ul className="list-disc list-inside">
           {album.songs.map((song) => (
             <Song
+              onResume={resumeSong}
               key={song._id}
               song={song}
               isPlaying={currentSong?._id === song._id && isPlaying}
