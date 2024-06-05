@@ -1,7 +1,9 @@
 import { User } from '@/app/(models)';
+import connectToDb from '@/db/mongoose';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function PUT(req: Request) {
+  await connectToDb();
   try {
     const body = await req.json();
     const { searchParams } = new URL(req.url);

@@ -1,10 +1,11 @@
 import { Artist, Follow } from '@/app/(models)';
+import connectToDb from '@/db/mongoose';
 import { NextResponse } from 'next/server';
 
 export async function DELETE(req: Request) {
+  await connectToDb();
   try {
     const body = await req.json();
-    console.log('body:', body);
     const { artistId, userId } = body;
 
     // Check if the follow relationship exists

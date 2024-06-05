@@ -1,7 +1,9 @@
 import User, { Artist, Follow } from '@/app/(models)';
+import connectToDb from '@/db/mongoose';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
+  await connectToDb();
   // Implement the follow artist logic here
   try {
     const body = await req.json();

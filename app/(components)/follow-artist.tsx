@@ -26,16 +26,15 @@ const FollowArtist = ({
   const [currentFollowers, setCurrentFollowers] =
     useState<number>(followers);
 
-  useEffect(() => {
-    fetchFollowStatus();
-  }, []);
-
   const fetchFollowStatus = async () => {
     const response = await checkFollow(artistId, userId);
     const following = !!response.artist;
     setIsFollowing(following);
   };
 
+  // useEffect(() => {
+  //   fetchFollowStatus();
+  // }, [fetchFollowStatus]);
   const fetchFollowers = async () => {
     const res = await fetchArtistFollowers(artistId);
     if (res) setCurrentFollowers(res);

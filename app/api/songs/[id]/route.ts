@@ -1,10 +1,12 @@
 import { Album, Song } from '@/app/(models)';
+import connectToDb from '@/db/mongoose';
 import { NextResponse } from 'next/server';
 
 export async function GET(
   req: Request,
   { params }: { params: { id: string } }
 ) {
+  await connectToDb();
   try {
     const { id } = params;
     const song = await Song.findById(id);

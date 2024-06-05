@@ -7,6 +7,7 @@ export async function GET(
   req: NextRequest,
   { params }: { params: { artistId: string } }
 ) {
+  await connectToDb();
   const { artistId } = params;
   if (!artistId) {
     return NextResponse.json(

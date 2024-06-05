@@ -3,6 +3,7 @@ import connectToDb from '@/db/mongoose';
 import { NextResponse } from 'next/server';
 
 export async function GET(req: Request) {
+  await connectToDb();
   try {
     const artists = await Artist.find();
 

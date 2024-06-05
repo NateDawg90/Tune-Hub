@@ -1,8 +1,10 @@
 // app/api/albums/route.ts
 import { Album } from '@/app/(models)';
+import connectToDb from '@/db/mongoose';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest) {
+  await connectToDb();
   try {
     const albums = await Album.find().populate('artist').exec();
 

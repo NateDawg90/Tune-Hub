@@ -6,6 +6,7 @@ export async function GET(
   req: NextRequest,
   { params }: { params: { id: string } }
 ) {
+  await connectToDb();
   try {
     const { id } = params;
     const artist = await Artist.findById(id);

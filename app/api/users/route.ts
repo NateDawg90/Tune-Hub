@@ -1,7 +1,9 @@
 import { User } from '@/app/(models)';
+import connectToDb from '@/db/mongoose';
 import { NextResponse } from 'next/server';
 
 export async function GET(req: Request) {
+  await connectToDb();
   try {
     const users = await User.find();
 
