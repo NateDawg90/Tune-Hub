@@ -20,6 +20,7 @@ const AlbumComponent = ({
   showTracks = true,
 }: AlbumProps) => {
   const { followers, name: artistName, _id: artistId } = artist;
+
   return (
     <div className="p-4">
       <div className="flex mb-4  justify-between">

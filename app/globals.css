@@ -24,13 +24,28 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 main {
   width: 100%;
   margin: 0 auto;
+
+  flex: 1;
+  padding-bottom: 80px; /* Add enough space for the music player */
 }
 
+footer {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  z-index: 10;
+}
 @layer utilities {
   .text-balance {
     text-wrap: balance;

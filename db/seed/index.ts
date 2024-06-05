@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import { Artist, Album, Song } from '@/app/(models)';
 import axios from 'axios';
-import { ARTISTS } from '@/constants/1000-artists';
+import { ARTISTS, SAMPLE_ARTISTS } from '@/constants/1000-artists';
 import dotenv from 'dotenv';
 dotenv.config({ path: '.env.local' });
 
@@ -15,7 +15,9 @@ export const seedDatabase = async () => {
   };
   try {
     await mongoose.connect(mongoUri!);
-    for (let i in ARTISTS) {
+    await clearDatabase();
+
+    for (let i in SAMPLE_ARTISTS) {
       const artistName = ARTISTS[i];
       const searchResponse = await axios.get(
         `https://api.spotify.com/v1/search/?q=${artistName}&type=artist`,
@@ -59,7 +61,7 @@ export const seedDatabase = async () => {
           album: album._id,
           previewUrl: trackData.preview_url,
         });
-        console.log('Seeding song:', song);
+        console.log(song.name, album._id, song.previewUrl);
         await song.save();
 
         album.songs.push(song._id);
@@ -75,6 +77,13 @@ export const seedDatabase = async () => {
     console.error('Error seeding database:', error);
     process.exit(1);
   }
+};
+
+const clearDatabase = async () => {
+  await Artist.deleteMany({});
+  await Album.deleteMany({});
+  await Song.deleteMany({});
+  console.log('Database cleared');
 };
 
 seedDatabase();

@@ -3,6 +3,7 @@ import Header from '../(components)/header';
 import MusicPlayer from '../(components)/music-player';
 import { verifyAuth } from '@/lib/lucia';
 import { redirect } from 'next/navigation';
+import Footer from '../(components)/footer';
 
 export const metadata = {
   title: 'Tunehub',
@@ -19,6 +20,8 @@ const AuthLayout = async ({
     <MusicPlayerProvider>
       <Header email={user.email} />
       <main className="flex-grow ">{children}</main>
+      {/* <Footer /> */}
+
       <MusicPlayer />
     </MusicPlayerProvider>
   );

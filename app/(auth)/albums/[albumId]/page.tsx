@@ -17,11 +17,10 @@ export default async function Page({
   if (!albumData) return <div>Loading...</div>;
 
   const album = JSON.parse(JSON.stringify(albumData));
-
   const { artist, songs, artwork, name } = album;
 
   return (
-    <div className="container mx-auto my-5">
+    <div className="md:container md:mx-auto my-5">
       <AlbumComponent
         userId={userId}
         artwork={artwork}

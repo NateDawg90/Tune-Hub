@@ -7,6 +7,14 @@ const config: Config = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    container: {
+      screens: {
+        sm: '100%',
+        md: '800px',
+        lg: '1000px',
+        xl: '1300px',
+      },
+    },
     extend: {
       colors: {
         jet: {
