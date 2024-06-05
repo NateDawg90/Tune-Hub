@@ -3,6 +3,7 @@
 import { ActionResult } from '@/app/(components)/form';
 import { User } from '@/app/(models)';
 import { lucia, verifyAuth } from '@/lib/lucia';
+import connectToDb from '@/db/mongoose';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { Argon2id } from 'oslo/password';
@@ -53,6 +54,7 @@ export async function signUp(
   const hashedPassword = await new Argon2id().hash(password);
 
   try {
+    await connectToDb();
     const user = await User.create({
       email: email,
       password: hashedPassword,
@@ -99,6 +101,7 @@ export const login = async (
     };
   }
 
+  await connectToDb();
   const existingUser = await User.findOne({
     email,
   });

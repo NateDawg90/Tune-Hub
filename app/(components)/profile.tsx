@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import { Artist } from '../(models)/Artist';
+import FollowArtist from './follow-artist';
 import { fetchFollowedArtists } from '@/helpers/network/follows';
-import ArtistDropdown from './artist-dropdown';
 
 interface Props {
   userId: string;
@@ -23,17 +23,19 @@ const Profile = ({ userId, email }: Props) => {
     updateArtists();
   }, [userId]);
 
+  console.log({ artists });
   return (
     <div className="flex flex-col">
       <h1 className="">{email}&apos;s followed artists</h1>
       {artists.map((artist) => (
-        <ArtistDropdown
-          key={artist._id}
-          artistId={artist._id}
-          artistName={artist.name}
-          userId={userId}
-          followers={artist.followers}
-        />
+        <div key={artist._id}>
+          <FollowArtist
+            userId={userId}
+            artistId={artist._id}
+            artistName={artist.name}
+            followers={artist.followers}
+          />
+        </div>
       ))}
     </div>
   );

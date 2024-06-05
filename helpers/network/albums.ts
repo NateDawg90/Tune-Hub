@@ -15,14 +15,16 @@ export const fetchAlbum = async (
 
 export const fetchArtistAlbums = async (
   artistId: string
-): Promise<Album[]> => {
+): Promise<Album[] | null> => {
   try {
-    const response = await axios.get(
-      `/api/albums/artist/${artistId}`
-    );
+    const response = await axios.get(`/api/albums`, {
+      params: {
+        artistId,
+      },
+    });
     return response.data;
   } catch (err) {
-    console.error('Error fetching albums by artist:', err);
-    throw err;
+    console.error('Error fetching artist albums:', err);
+    return null;
   }
 };
