@@ -5,7 +5,6 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest) {
   try {
-    await connectToDb();
     const params = req.nextUrl.searchParams;
     const artistId = params.get('artistId');
     if (!artistId) {
