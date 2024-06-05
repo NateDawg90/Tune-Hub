@@ -1,5 +1,4 @@
 import AlbumComponent from '@/app/(components)/album';
-import FollowArtist from '@/app/(components)/follow-artist';
 import { Album } from '@/app/(models)';
 import { verifyAuth } from '@/lib/lucia';
 export default async function Page({
@@ -20,17 +19,16 @@ export default async function Page({
   const album = JSON.parse(JSON.stringify(albumData));
 
   const { artist, songs, artwork, name } = album;
-  const { followers, name: artistName, _id: artistId } = artist;
 
   return (
-    <div className="container mx-auto">
-      <FollowArtist
+    <div className="container mx-auto my-5">
+      <AlbumComponent
         userId={userId}
-        artistId={artistId}
-        artistName={artistName}
-        followers={followers}
+        artwork={artwork}
+        name={name}
+        songs={songs}
+        artist={artist}
       />
-      <AlbumComponent artwork={artwork} name={name} songs={songs} />
     </div>
   );
 }

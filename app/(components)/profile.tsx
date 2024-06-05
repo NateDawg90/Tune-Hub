@@ -24,8 +24,10 @@ const Profile = ({ userId, email }: Props) => {
   }, [userId]);
 
   return (
-    <div className="flex flex-col">
-      <h1 className="">{email}&apos;s followed artists</h1>
+    <div className="flex flex-col my-6">
+      <h1 className="text-3xl font-bold mb-6 text-center">
+        {email}&apos;s followed artists
+      </h1>
       {artists.map((artist) => (
         <ArtistDropdown
           key={artist._id}
