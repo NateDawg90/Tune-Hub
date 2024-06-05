@@ -32,9 +32,9 @@ const FollowArtist = ({
     setIsFollowing(following);
   };
 
-  // useEffect(() => {
-  //   fetchFollowStatus();
-  // }, [fetchFollowStatus]);
+  useEffect(() => {
+    fetchFollowStatus();
+  }, []);
   const fetchFollowers = async () => {
     const res = await fetchArtistFollowers(artistId);
     if (res) setCurrentFollowers(res);
@@ -51,17 +51,17 @@ const FollowArtist = ({
   };
 
   return (
-    <div className="ml-4">
+    <div className="ml-4 flex flex-col items-end">
       {showName && (
-        <p className="text-lg text-gray-600">{artistName}</p>
+        <p className="text-3xl text-gray-600">{artistName}</p>
       )}
-      <p className="text-sm text-gray-600">
+      <p className="text-sm text-gray-600 text-nowrap">
         {currentFollowers} followers
       </p>
 
       <button
         onClick={toggleFollow}
-        className="mt-2 mb-4 p-2 bg-blue-500 text-white rounded hover:bg-blue-700"
+        className="mt-2 p-2 bg-blue-500 text-white rounded hover:bg-blue-700"
       >
         {isFollowing ? 'Unfollow' : 'Follow'}
       </button>

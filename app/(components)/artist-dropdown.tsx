@@ -50,7 +50,7 @@ const ArtistDropdown = ({
             ) : (
               <FaChevronDown className="mr-2 text-gray-600" />
             )}
-            <p className="text-lg text-gray-600">{artistName}</p>
+            <p className="text-xl text-gray-600">{artistName}</p>
           </button>
           <FollowArtist
             artistName={artistName}
@@ -61,14 +61,18 @@ const ArtistDropdown = ({
           />
         </div>
 
-        {!collapsed && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
-            {albums.map((album) => (
-              <Link
-                key={album._id}
-                href={`/albums/${album._id}`}
-                passHref
-              >
+        <div
+          className={`transition-max-height transition-all duration-500 ease-in-out ${
+            collapsed ? 'max-h-0 ' : 'max-h-screen'
+          } overflow-hidden grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4  px-4`}
+        >
+          {albums.map((album) => (
+            <Link
+              key={album._id}
+              href={`/albums/${album._id}`}
+              passHref
+            >
+              <div className="w-full h-auto mb-2">
                 <Image
                   src={album.artwork}
                   alt={album.name}
@@ -76,14 +80,10 @@ const ArtistDropdown = ({
                   height={300}
                   className="w-full h-auto mb-2 rounded shadow"
                 />
-                <p className="text-sm text-center text-gray-600">
-                  {album.name}
-                </p>
-                <div className="block"></div>
-              </Link>
-            ))}
-          </div>
-        )}
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   );
