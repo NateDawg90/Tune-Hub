@@ -52,7 +52,7 @@ const MusicPlayer = () => {
       : currentSong.name;
 
   return (
-    <div className="fixed bottom-0 w-full bg-jet-500 text-silver p-4 shadow-md flex items-center justify-between">
+    <div className=" sticky bottom-0 w-full bg-jet-500 text-silver p-4 shadow-md flex items-center justify-between">
       <div className="flex items-center">
         <button
           onClick={() => togglePlayPause(currentSong)}

@@ -25,7 +25,7 @@ const RootLayout = async ({
           inter.className + ' bg-jet-300 min-h-screen flex flex-col'
         }
       >
-        <div className="flex-grow flex flex-col">{children}</div>
+        <div className="flex-grow flex flex-col ">{children}</div>
         <Footer />
       </body>
     </html>
