@@ -6,7 +6,6 @@ import { Lucia } from 'lucia';
 import type { Session, User } from 'lucia';
 import { cookies } from 'next/headers';
 import { cache } from 'react';
-import connectToDb from '@/db/mongoose';
 
 export const adapter = new MongodbAdapter(
   mongoose.connection.collection('sessions'),
@@ -38,7 +37,7 @@ export const verifyAuth = cache(
         session: null,
       };
     }
-    await connectToDb();
+
     const result = await lucia.validateSession(sessionId);
     try {
       if (result.session?.fresh) {

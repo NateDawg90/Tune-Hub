@@ -8,6 +8,7 @@ export default async function Page({
 }: {
   readonly params: { albumId: string };
 }) {
+  await connectToDb();
   const { albumId } = params;
   const { user } = await verifyAuth();
   const userId = user?.id ?? '';

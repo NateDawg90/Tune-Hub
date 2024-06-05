@@ -1,9 +1,11 @@
 import User, { Artist, Follow } from '@/app/(models)';
+import connectToDb from '@/db/mongoose';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
   // Implement the follow artist logic here
   try {
+    await connectToDb();
     const body = await req.json();
     const { artistId, userId } = body;
     const user = await User.findById(userId);
@@ -55,6 +57,7 @@ export async function POST(req: Request) {
 
 export async function GET(req: NextRequest) {
   try {
+    await connectToDb();
     const params = req.nextUrl.searchParams;
     const userId = params.get('userId');
     const artistId = params.get('artistId');
