@@ -28,7 +28,6 @@ body {
 
 main {
   width: 100%;
-  max-width: 600px;
   margin: 0 auto;
 }
 
@@ -78,6 +77,10 @@ label {
   opacity: 1;
 }
 
-.icon {
+/* .icon {
   fill: #c1bdb3;
-}
+  fill: #f8f8f2;
+  :hover {
+    fill: #f8f8f2;
+  }
+} */

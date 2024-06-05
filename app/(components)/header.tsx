@@ -2,29 +2,40 @@ import { logout } from '@/helpers/auth-actions';
 import HamburgerMenu from './menus/hamburger-menu';
 import Link from 'next/link';
 import ProfileIcon from 'icon/user-regular.svg';
+import Image from 'next/image';
 interface Props {
   email: string;
 }
 const Header = ({ email }: Props) => {
   return (
-    <header className="w-full bg-jet-500 py-4 shadow-md">
-      <div className="container mx-auto flex items-center justify-between px-4">
-        <HamburgerMenu onLogout={logout} />
-        <div className="flex items-center justify-center">
+    <header className="w-full bg-jet-500 py-4 shadow-md text-silver">
+      <div className="container mx-auto flex  justify-between px-4">
+        <div className="flex w-full">
+          <HamburgerMenu onLogout={logout} />
           <Link
             href="/home"
-            className="text-2xl font-bold text-silver"
+            className="text-2xl font-bold text-silver ml-3"
           >
-            Tunehub
+            <Image
+              src={'/img/logo.png'}
+              alt="logo"
+              width={150}
+              height={50}
+            />
           </Link>
         </div>
-        <div className="flex items-center">
-          Welcome, {email}
+        <div className="flex items-center ">
+          <div
+            className="text-xs
+          "
+          >
+            Welcome, <div className="text-sm">{email}</div>
+          </div>
           <Link
             href={'/profile'}
-            className="text-silver hover:text-davys-gray focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-davys-gray ml-4"
+            className="hover:text-white text-silver focus:outline-none   ml-4"
           >
-            <ProfileIcon className="icon h-5" />
+            <ProfileIcon className="h-5 stroke-current fill-current" />
           </Link>
         </div>
       </div>

@@ -43,10 +43,10 @@ const HamburgerMenu = ({ onLogout }: Props) => {
     <div className="relative flex items-center" ref={dropdownRef}>
       <button
         onClick={toggleOpen}
-        className="hover:text-davys-gray focus:outline-none flex items-center justify-center"
+        className="hover:text-white focus:outline-none flex items-center justify-center"
       >
         <svg
-          className="w-6 h-6 fill-none stroke-current text-silver"
+          className="w-6 h-6  stroke-current "
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
         >
