@@ -16,7 +16,7 @@ const Auth = async ({ searchParams }: Props) => {
     redirect('/home');
   }
   return (
-    <main className="flex-grow flex items-center justify-center">
+    <main className="flex-grow flex container mx-auto items-center justify-center">
       <AuthForm signUpMode={signUpMode} />
     </main>
   );
