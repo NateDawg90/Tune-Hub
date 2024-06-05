@@ -16,7 +16,6 @@ export async function GET(
   }
 
   try {
-    await connectToDb();
     const albums = await Album.find({ artist: artistId }).populate(
       'artist'
     );
