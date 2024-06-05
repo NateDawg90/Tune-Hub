@@ -1,5 +1,4 @@
 import { Album, Song } from '@/app/(models)';
-import connectToDb from '@/db/mongoose';
 import { NextResponse } from 'next/server';
 
 export async function GET(
@@ -7,7 +6,6 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
-    await connectToDb();
     const { id } = params;
     const song = await Song.findById(id);
 
