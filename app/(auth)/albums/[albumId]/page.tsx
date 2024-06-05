@@ -1,7 +1,6 @@
 import AlbumComponent from '@/app/(components)/album';
 import FollowArtist from '@/app/(components)/follow-artist';
 import { Album } from '@/app/(models)';
-import connectToDb from '@/db/mongoose';
 import { verifyAuth } from '@/lib/lucia';
 export default async function Page({
   params,
@@ -24,7 +23,7 @@ export default async function Page({
   const { followers, name: artistName, _id: artistId } = artist;
 
   return (
-    <>
+    <div className="container mx-auto">
       <FollowArtist
         userId={userId}
         artistId={artistId}
@@ -32,6 +31,6 @@ export default async function Page({
         followers={followers}
       />
       <AlbumComponent artwork={artwork} name={name} songs={songs} />
-    </>
+    </div>
   );
 }
