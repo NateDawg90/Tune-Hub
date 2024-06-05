@@ -3,6 +3,7 @@ import Header from '../(components)/header';
 import MusicPlayer from '../(components)/music-player';
 import { verifyAuth } from '@/lib/lucia';
 import { redirect } from 'next/navigation';
+import connectToDb from '@/db/mongoose';
 
 export const metadata = {
   title: 'Tunehub',

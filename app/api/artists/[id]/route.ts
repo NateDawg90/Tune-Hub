@@ -1,14 +1,21 @@
-// /pages/api/artists/[id].ts
 import { Artist } from '@/app/(models)';
 import connectToDb from '@/db/mongoose';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET(req: Request) {
+export async function GET(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
   try {
-    await connectToDb();
-    const users = await Artist.find();
-
-    return NextResponse.json(users, { status: 200 });
+    const { id } = params;
+    const artist = await Artist.findById(id);
+    if (!artist) {
+      return NextResponse.json(
+        { message: 'Artist not found' },
+        { status: 404 }
+      );
+    }
+    return NextResponse.json(artist, { status: 200 });
   } catch (err) {
     console.error({ err });
     return NextResponse.json(

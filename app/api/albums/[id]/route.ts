@@ -1,13 +1,12 @@
 import { Album } from '@/app/(models)';
 import connectToDb from '@/db/mongoose';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(
-  req: Request,
+  req: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
-    await connectToDb();
     const { id } = params;
     const album = await Album.findById(id)
       .populate('artist')
