@@ -7,5 +7,9 @@ export default async function Page() {
   if (!user) {
     return null;
   }
-  return <Profile userId={user.id} email={user.email} />;
+  return (
+    <div className="container mx-auto">
+      <Profile userId={user.id} email={user.email} />
+    </div>
+  );
 }

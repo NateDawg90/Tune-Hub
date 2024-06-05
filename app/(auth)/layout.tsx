@@ -3,7 +3,6 @@ import Header from '../(components)/header';
 import MusicPlayer from '../(components)/music-player';
 import { verifyAuth } from '@/lib/lucia';
 import { redirect } from 'next/navigation';
-import connectToDb from '@/db/mongoose';
 
 export const metadata = {
   title: 'Tunehub',
@@ -19,9 +18,7 @@ const AuthLayout = async ({
   return (
     <MusicPlayerProvider>
       <Header email={user.email} />
-      <main className="flex-grow container mx-auto px-4">
-        {children}
-      </main>
+      <main className="flex-grow ">{children}</main>
       <MusicPlayer />
     </MusicPlayerProvider>
   );

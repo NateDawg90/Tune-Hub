@@ -28,7 +28,6 @@ body {
 
 main {
   width: 100%;
-  max-width: 600px;
   margin: 0 auto;
 }
 
@@ -76,8 +75,4 @@ label {
 
 .slider-thumb:hover {
   opacity: 1;
-}
-
-.icon {
-  fill: #c1bdb3;
 }

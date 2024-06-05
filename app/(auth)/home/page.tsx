@@ -1,16 +1,14 @@
 // /components/Home.tsx
 import ArtistDiscovery from '@/app/(components)/artist-discovery';
+import { Hero } from '@/app/(components)/hero';
 import React from 'react';
 
 const Home = async () => {
   return (
     <div className="home">
-      <div className="hero">
-        <h1>Welcome to Tunehub</h1>
-        {/* Add your animation here */}
-        <p>Discover new music and artists</p>
-        <ArtistDiscovery />
-      </div>
+      <Hero />
+
+      <ArtistDiscovery />
     </div>
   );
 };

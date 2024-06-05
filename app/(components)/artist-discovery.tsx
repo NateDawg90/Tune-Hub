@@ -39,7 +39,7 @@ const ArtistDiscovery = () => {
   });
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center container mx-auto">
       <div className="w-1/2 ">
         <input
           type="text"
