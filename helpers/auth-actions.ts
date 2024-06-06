@@ -33,6 +33,7 @@ export async function signUp(
   'use server';
   const email = formData.get('email');
   const password = formData.get('password');
+  const firstName = formData.get('firstName');
   const emailRegex =
     /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const emailValid = emailRegex.test(email as string);
@@ -40,22 +41,26 @@ export async function signUp(
     typeof password !== 'string' ||
     password.length < 6 ||
     password.length > 255;
-  if (!emailValid) {
-    return {
-      error: 'Invalid email',
-    };
-  }
-  if (passwordInvalid) {
+  const firstNameInvalid =
+    typeof firstName !== 'string' || firstName.length < 1;
+  if (!emailValid) return { error: 'Invalid email' };
+
+  if (passwordInvalid)
     return {
       error: 'Invalid password',
     };
-  }
+  if (firstNameInvalid)
+    return {
+      error: 'Invalid first name',
+    };
+
   const hashedPassword = await new Argon2id().hash(password);
 
   try {
     const user = await User.create({
-      email: email,
+      email,
       password: hashedPassword,
+      firstName,
     });
 
     const session = await lucia.createSession(user._id, {});

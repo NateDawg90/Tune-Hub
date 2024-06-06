@@ -4,9 +4,9 @@ import Link from 'next/link';
 import ProfileIcon from 'icon/user-regular.svg';
 import Image from 'next/image';
 interface Props {
-  email: string;
+  firstName: string;
 }
-const Header = ({ email }: Props) => {
+const Header = ({ firstName }: Props) => {
   return (
     <header className="w-full bg-jet-500 py-4 shadow-md text-silver">
       <div className="container mx-auto flex  justify-between px-4">
@@ -29,7 +29,7 @@ const Header = ({ email }: Props) => {
             className="text-xs
           "
           >
-            Welcome, <div className="text-sm">{email}</div>
+            Welcome, <div className="text-sm">{firstName}</div>
           </div>
           <Link
             href={'/profile'}

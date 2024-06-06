@@ -1,4 +1,4 @@
-import mongoose, { Document, Schema } from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 import { IArtist } from './Artist';
 import { IAlbum } from './Album';
 import { ISong } from './Song';
@@ -74,6 +74,7 @@ const userSchema = new Schema<IUser>(
   {
     email: String,
     password: String,
+    firstName: String,
   },
   {
     timestamps: true,
