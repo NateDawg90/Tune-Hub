@@ -25,7 +25,6 @@ const MusicPlayer = () => {
           const response = await axios.get(
             `/api/songs/${currentSong._id}`
           );
-          console.log('response', response);
           setSongData(response.data);
         } catch (err) {
           console.error('Error fetching song:', err);

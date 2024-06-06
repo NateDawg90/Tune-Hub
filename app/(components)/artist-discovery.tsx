@@ -14,10 +14,12 @@ const ArtistDiscovery = () => {
       try {
         const response = await axios.get('/api/albums');
         if (!response.data) return console.error('No albums found');
-        const randomAlbums = response.data.sort(
-          () => Math.random() - 0.5
+        const albums = response.data as Album[];
+        const alphabeticAlbums = albums.sort((a, b) =>
+          a.name.localeCompare(b.name)
         );
-        setAlbums(randomAlbums);
+
+        setAlbums(alphabeticAlbums);
       } catch (error) {
         console.error('Error fetching albums:', error);
       }

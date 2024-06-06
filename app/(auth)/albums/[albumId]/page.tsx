@@ -8,6 +8,7 @@ export default async function Page({
 }) {
   const { albumId } = params;
   const { user } = await verifyAuth();
+
   const userId = user?.id ?? '';
   const albumData = await Album.findById(albumId)
     .populate('artist')
