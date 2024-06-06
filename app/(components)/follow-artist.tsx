@@ -37,6 +37,7 @@ const FollowArtist = ({
   useEffect(() => {
     fetchFollowStatus();
   }, []);
+
   const fetchFollowers = async () => {
     const res = await fetchArtistFollowers(artistId);
     if (res) setCurrentFollowers(res);
