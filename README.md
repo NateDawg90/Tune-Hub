@@ -14,6 +14,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 - [Node.js](https://nodejs.org/)
 - [MongoDB](https://www.mongodb.com/)
 - [Spotify API](https://developer.spotify.com/documentation/web-api/)
+- [Lucia Authentication](https://lucia-auth.com/)
 
 ## Getting Started
 
