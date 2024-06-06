@@ -13,6 +13,7 @@ interface Props {
   artistId: string;
   followers: number;
   showName?: boolean;
+  className?: string;
 }
 
 const FollowArtist = ({
@@ -21,6 +22,7 @@ const FollowArtist = ({
   artistName,
   followers,
   showName = true,
+  className = '',
 }: Props) => {
   const [isFollowing, setIsFollowing] = useState<boolean>(false);
   const [currentFollowers, setCurrentFollowers] =
@@ -51,7 +53,7 @@ const FollowArtist = ({
   };
 
   return (
-    <div className="ml-4 flex flex-col items-end">
+    <div className={`ml-4 flex flex-col items-end ${className}`}>
       {showName && (
         <p className="text-3xl text-gray-600 text-end">
           {artistName}

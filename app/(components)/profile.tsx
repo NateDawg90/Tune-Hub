@@ -12,7 +12,6 @@ interface Props {
 }
 const Profile = ({ user }: Props) => {
   const { email, id: userId, firstName } = user;
-  console.log('user', user);
   const [artists, setArtists] = useState<Artist[]>([]);
 
   useEffect(() => {

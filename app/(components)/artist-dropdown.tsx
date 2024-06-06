@@ -5,6 +5,7 @@ import { fetchArtistAlbums } from '@/helpers/network/albums';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaChevronDown, FaChevronRight } from 'react-icons/fa';
+import { useSpring, animated } from '@react-spring/web';
 
 interface Props {
   artistName: string;
@@ -37,8 +38,14 @@ const ArtistDropdown = ({
     setCollapsed(!collapsed);
   };
 
+  const animationProps = useSpring({
+    maxHeight: collapsed ? 0 : 500, // Adjust height as needed
+    opacity: collapsed ? 0 : 1,
+    config: { duration: 500 },
+  });
+
   return (
-    <div className="mb-4">
+    <div className="mb-2">
       <div className="mt-2 border border-gray-200 rounded-lg shadow-md p-4">
         <div className="flex items-center justify-between">
           <button
@@ -50,7 +57,9 @@ const ArtistDropdown = ({
             ) : (
               <FaChevronDown className="mr-2 text-gray-600" />
             )}
-            <p className="text-xl text-gray-600">{artistName}</p>
+            <p className="text-left text-xl text-gray-600">
+              {artistName}
+            </p>
           </button>
           <FollowArtist
             artistName={artistName}
@@ -58,32 +67,34 @@ const ArtistDropdown = ({
             artistId={artistId}
             followers={followers}
             showName={false}
+            className="ml-4" // Add margin to create space
           />
         </div>
 
-        <div
-          className={`transition-max-height transition-all duration-500 ease-in-out ${
-            collapsed ? 'max-h-0 ' : 'max-h-screen'
-          } overflow-hidden grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4  px-4`}
+        <animated.div
+          style={animationProps}
+          className="overflow-hidden"
         >
-          {albums.map((album) => (
-            <Link
-              key={album._id}
-              href={`/albums/${album._id}`}
-              passHref
-            >
-              <div className="w-full h-auto mb-2">
-                <Image
-                  src={album.artwork}
-                  alt={album.name}
-                  width={300}
-                  height={300}
-                  className="w-full h-auto mb-2 rounded shadow"
-                />
-              </div>
-            </Link>
-          ))}
-        </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4 px-4">
+            {albums.map((album) => (
+              <Link
+                key={album._id}
+                href={`/albums/${album._id}`}
+                passHref
+              >
+                <div className="w-full h-auto mb-2">
+                  <Image
+                    src={album.artwork}
+                    alt={album.name}
+                    width={300}
+                    height={300}
+                    className="w-full h-auto mb-2 rounded shadow"
+                  />
+                </div>
+              </Link>
+            ))}
+          </div>
+        </animated.div>
       </div>
     </div>
   );
