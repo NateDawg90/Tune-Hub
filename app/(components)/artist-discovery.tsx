@@ -14,7 +14,10 @@ const ArtistDiscovery = () => {
       try {
         const response = await axios.get('/api/albums');
         if (!response.data) return console.error('No albums found');
-        setAlbums(response.data);
+        const randomAlbums = response.data.sort(
+          () => Math.random() - 0.5
+        );
+        setAlbums(randomAlbums);
       } catch (error) {
         console.error('Error fetching albums:', error);
       }
@@ -60,8 +63,8 @@ const ArtistDiscovery = () => {
           Randomize!
         </button>
       </div>
-      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 mt-6 ">
-        {filteredAlbums.slice(0, 50).map((album) => (
+      <div className="grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 mt-6 ">
+        {filteredAlbums.slice(0, 25).map((album) => (
           <Link key={album._id} href={`/albums/${album._id}`}>
             <Image
               key={album._id}

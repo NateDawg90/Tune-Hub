@@ -3,10 +3,11 @@ import { MongodbAdapter } from '@lucia-auth/adapter-mongodb';
 import mongoose from 'mongoose';
 
 import { Lucia } from 'lucia';
-import type { Session, User } from 'lucia';
+import type { Session } from 'lucia';
 import { cookies } from 'next/headers';
 import { cache } from 'react';
 import connectToDb from '@/db/mongoose';
+import { User } from '@/app/(models)/User';
 
 export const adapter = new MongodbAdapter(
   mongoose.connection.collection('sessions'),
@@ -22,6 +23,7 @@ export const lucia = new Lucia(adapter, {
   getUserAttributes: (attributes: any) => {
     return {
       email: attributes.email,
+      firstName: attributes.firstName,
     };
   },
 });

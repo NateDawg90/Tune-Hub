@@ -24,6 +24,17 @@ const AuthForm = ({ signUpMode }: AuthFormProps) => {
             id="email"
           />
         </div>
+        {signUpMode && (
+          <div className="mb-4">
+            <label htmlFor="firstName">First Name:</label>
+            <input
+              className="mt-1"
+              placeholder="enter first name"
+              name="firstName"
+              id="firstName"
+            />
+          </div>
+        )}
         <div className="mb-4">
           <label htmlFor="password">Password:</label>
           <input
