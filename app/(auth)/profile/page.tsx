@@ -9,7 +9,7 @@ export default async function Page() {
   }
   return (
     <div className="container mx-auto">
-      <Profile userId={user.id} email={user.email} />
+      <Profile user={user} />
     </div>
   );
 }
