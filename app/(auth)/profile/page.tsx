@@ -8,8 +8,8 @@ export default async function Page() {
     return null;
   }
   return (
-    <div className="container mx-auto">
-      <Profile userId={user.id} email={user.email} />
+    <div className="container mx-auto px-4">
+      <Profile user={user} />
     </div>
   );
 }

@@ -15,11 +15,9 @@ const ArtistDiscovery = () => {
         const response = await axios.get('/api/albums');
         if (!response.data) return console.error('No albums found');
         const albums = response.data as Album[];
-        const alphabeticAlbums = albums.sort((a, b) =>
-          a.name.localeCompare(b.name)
-        );
+        albums.sort((a, b) => a.name.localeCompare(b.name));
 
-        setAlbums(alphabeticAlbums);
+        setAlbums(albums);
       } catch (error) {
         console.error('Error fetching albums:', error);
       }

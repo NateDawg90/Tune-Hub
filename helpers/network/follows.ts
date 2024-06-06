@@ -3,11 +3,10 @@ import { IFollow } from '@/app/(models)/Follow';
 import { Artist } from '@/app/(models)/Artist';
 export const follow = async (artistId: string, userId: string) => {
   try {
-    const res = await axios.post(`/api/follows`, {
+    await axios.post(`/api/follows`, {
       artistId,
       userId,
     });
-    console.log('follow:', res);
   } catch (error) {
     console.error('Error following artist:', error);
   }
@@ -15,13 +14,12 @@ export const follow = async (artistId: string, userId: string) => {
 
 export const unfollow = async (artistId: string, userId: string) => {
   try {
-    const res = await axios.delete(`/api/unfollow`, {
+    await axios.delete(`/api/unfollow`, {
       data: {
         artistId,
         userId,
       },
     });
-    console.log('unfollow:', res);
   } catch (error) {
     console.error('Error unfollowing artist:', error);
   }
