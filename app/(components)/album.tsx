@@ -8,7 +8,6 @@ interface AlbumProps {
   artwork: string;
   name: string;
   songs: Song[];
-  showTracks?: boolean;
   artist: Artist;
 }
 const AlbumComponent = ({
@@ -17,7 +16,6 @@ const AlbumComponent = ({
   name,
   songs,
   artist,
-  showTracks = true,
 }: AlbumProps) => {
   const { followers, name: artistName, _id: artistId } = artist;
 
@@ -38,19 +36,20 @@ const AlbumComponent = ({
             artistName={artistName}
             followers={followers}
           />
-          <h1 className="text-3xl font-bold ml-5">{name}</h1>
+          <h1 className="text-3xl font-bold ml-5 hidden md:block">
+            {name}
+          </h1>
         </div>
       </div>
-      {showTracks && (
-        <div>
-          <h2 className="text-2xl font-bold mb-4">Tracks</h2>
-          <ul className="list-disc list-inside">
-            {songs.map((song) => (
-              <SongView key={song._id} song={song} />
-            ))}
-          </ul>
-        </div>
-      )}
+      <h1 className="text-2xl font-bold md:hidden">{name}</h1>
+      <div>
+        <h2 className="text-xl md:text-2xl font-bold my-4">Tracks</h2>
+        <ul className="list-disc list-inside">
+          {songs.map((song) => (
+            <SongView key={song._id} song={song} />
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
