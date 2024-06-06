@@ -13,7 +13,6 @@ interface Props {
   artistId: string;
   followers: number;
   showName?: boolean;
-  className?: string;
 }
 
 const FollowArtist = ({
@@ -22,7 +21,6 @@ const FollowArtist = ({
   artistName,
   followers,
   showName = true,
-  className = '',
 }: Props) => {
   const [isFollowing, setIsFollowing] = useState<boolean>(false);
   const [currentFollowers, setCurrentFollowers] =
@@ -37,6 +35,7 @@ const FollowArtist = ({
   useEffect(() => {
     fetchFollowStatus();
   }, []);
+
   const fetchFollowers = async () => {
     const res = await fetchArtistFollowers(artistId);
     if (res) setCurrentFollowers(res);
@@ -53,11 +52,9 @@ const FollowArtist = ({
   };
 
   return (
-    <div className={`ml-4 flex flex-col items-end ${className}`}>
+    <div className="ml-4 flex flex-col items-end">
       {showName && (
-        <p className="text-3xl text-gray-600 text-end">
-          {artistName}
-        </p>
+        <p className="text-3xl text-gray-600">{artistName}</p>
       )}
       <p className="text-sm text-gray-600 text-nowrap">
         {currentFollowers} followers
