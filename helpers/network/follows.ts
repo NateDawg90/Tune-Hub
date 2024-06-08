@@ -46,12 +46,9 @@ export const fetchFollowedArtists = async (
   userId: string
 ): Promise<Artist[] | null> => {
   try {
-    const res = await axios.get(`/api/follows`, {
-      params: {
-        userId,
-      },
-    });
-    const follows = res.data.follows;
+    const res = await axios.get(`/api/follows/${userId}`);
+    const follows = res.data;
+
     const artists = follows.map((follow: IFollow) => follow.artist);
     return artists;
   } catch (error) {

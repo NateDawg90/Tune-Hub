@@ -7,7 +7,6 @@ export async function GET(
   req: NextRequest,
   { params }: { params: { artistId: string } }
 ) {
-  await connectToDb();
   const { artistId } = params;
   if (!artistId) {
     return NextResponse.json(
@@ -17,6 +16,7 @@ export async function GET(
   }
 
   try {
+    await connectToDb();
     const albums = await Album.find({ artist: artistId }).populate(
       'artist'
     );

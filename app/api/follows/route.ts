@@ -3,11 +3,11 @@ import connectToDb from '@/db/mongoose';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
-  await connectToDb();
   // Implement the follow artist logic here
+  const body = await req.json();
+  const { artistId, userId } = body;
   try {
-    const body = await req.json();
-    const { artistId, userId } = body;
+    await connectToDb();
     const user = await User.findById(userId);
     const artist = await Artist.findById(artistId);
     if (!user || !artist) {
@@ -57,36 +57,28 @@ export async function POST(req: Request) {
 
 export async function GET(req: NextRequest) {
   try {
+    await connectToDb();
     const params = req.nextUrl.searchParams;
     const userId = params.get('userId');
     const artistId = params.get('artistId');
-    if (!userId) {
-      return NextResponse.json(
-        { message: 'userId and artistId are required' },
-        { status: 400 }
-      );
+
+    if (artistId && userId) {
+      const follow = await Follow.findOne({
+        user: userId,
+        artist: artistId,
+      });
+
+      if (!follow) {
+        return NextResponse.json(
+          { message: 'Follow relationship not found' },
+          { status: 200 }
+        );
+      }
+
+      return NextResponse.json(follow, { status: 200 });
     }
-
-    if (!artistId) {
-      const follows = await Follow.find({ user: userId }).populate(
-        'artist'
-      );
-      return NextResponse.json({ follows }, { status: 200 });
-    }
-
-    const follow = await Follow.findOne({
-      user: userId,
-      artist: artistId,
-    });
-
-    if (!follow) {
-      return NextResponse.json(
-        { message: 'Follow relationship not found' },
-        { status: 200 }
-      );
-    }
-
-    return NextResponse.json(follow, { status: 200 });
+    const follows = await Follow.find();
+    return NextResponse.json({ follows }, { status: 200 });
   } catch (err) {
     console.error({ err });
     return NextResponse.json(
