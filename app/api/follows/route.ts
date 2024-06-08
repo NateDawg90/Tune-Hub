@@ -61,12 +61,6 @@ export async function GET(req: NextRequest) {
     const params = req.nextUrl.searchParams;
     const userId = params.get('userId');
     const artistId = params.get('artistId');
-    // if (!userId) {
-    //   return NextResponse.json(
-    //     { message: 'userId is required' },
-    //     { status: 400 }
-    //   );
-    // }
 
     if (artistId && userId) {
       const follow = await Follow.findOne({
