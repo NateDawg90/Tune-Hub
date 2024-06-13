@@ -1,5 +1,5 @@
 import AlbumComponent from '@/app/(components)/album';
-import { Album } from '@/app/(models)';
+import { fetchAlbum } from '@/helpers/network/server/albums';
 import { verifyAuth } from '@/lib/lucia';
 export default async function Page({
   params,
@@ -10,10 +10,7 @@ export default async function Page({
   const { user } = await verifyAuth();
 
   const userId = user?.id ?? '';
-  const albumData = await Album.findById(albumId)
-    .populate('artist')
-    .populate('songs')
-    .exec();
+  const albumData = await fetchAlbum(albumId);
 
   if (!albumData) return <div>Loading...</div>;
 
